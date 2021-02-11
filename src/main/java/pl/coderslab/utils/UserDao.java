@@ -140,9 +140,11 @@ public class UserDao {
 
 
     // 5) FIND ALL USERS -----------------------------------------------------------------------------------------------
-    public void findAll() throws SQLException {
+    public Object findAll() throws SQLException {
+
+        User[] users = {};
         try (Connection conn = DbUtil.getConnection()) {
-            User[] users = {};
+
             int count = getCount(conn);
 
             for (int id = 1; id <= 20; id++) {
@@ -171,6 +173,7 @@ public class UserDao {
                 System.out.println(users[i].getUsername());                                                              //Print all users from table --> checking if table is set and filled
             }
         }
+        return users;
     }
 
     // 6) UPDATE USER WITH GIVEN CHANGES -------------------------------------------------------------------------------
