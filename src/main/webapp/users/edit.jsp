@@ -94,28 +94,31 @@
                             <!-- Card Header - Dropdown -->
                             <div
                                     class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Dodaj użytkownika</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Edytuj użytkownika</h6>
 
                             </div>
                             <!-- Card Body -->
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <div class="chart-area">
+
+
+
 
                                     <form method="post">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nazwa użytkownika</label>
-                                            <input type="text" name="username" class="form-control" id="inputname" aria-describedby="emailHelp">
+                                            <input type="text" name="username" class="form-control" id="inputname" aria-describedby="emailHelp" value="${user.getUsername()}">
 
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Adres e-mail</label>
-                                            <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${user.getEmail()}">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Hasło</label>
-                                            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Wprowadź nowe hasło">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                                        <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
                                     </form>
 
                                 </div>
@@ -171,6 +174,7 @@
     <script src="theme/js/demo/chart-area-demo.js"></script>
     <script src="theme/js/demo/chart-pie-demo.js"></script>
 
+</div>
 </div>
 
 </body>

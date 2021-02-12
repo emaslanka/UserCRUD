@@ -49,7 +49,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/user/list">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -83,7 +83,7 @@
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">UserCRUD</h1>
                     <a href="/user/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Add user</a>
+                            class="fas fa-download fa-sm text-white-50"></i> Dodaj użytkownika</a>
                 </div>
 
 
@@ -99,12 +99,12 @@
                             <!-- Card Header - Dropdown -->
                             <div
                                     class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Users List</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Lista użytkowników</h6>
 
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                <div class="chart-area">
+                                <div class="chart-area" style="overflow:auto;">
 
                                     <table class = "table table-striped">
                                         <thead class="table-light">
@@ -116,8 +116,6 @@
                                         </tr>
                                         </thead>
 
-
-
                                         <c:forEach items="${users}" var="u">
 
                                             <tr>
@@ -125,7 +123,9 @@
                                                 <td>${u.username}</td>
                                                 <td>${u.email}</td>
                                                 <td>${u.id}</td>
-                                                <td><a href="<c:url value="/user/show?id=${u.id}"/>">Pokaż </a>/ Edit / Usuń</td>
+                                                <td><a href="<c:url value="/user/show?id=${u.id}"/>">Pokaż </a>/
+                                                    <a href="<c:url value="/user/edit?id=${u.id}"/>">Edit </a>/
+                                                    <a href="<c:url value="/user/delete?id=${u.id}"/>">Usuń</a></td>
                                             </tr>
 
                                         </c:forEach>

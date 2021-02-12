@@ -1,7 +1,9 @@
 package pl.coderslab.utils;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class UserDao {
 
@@ -113,8 +115,7 @@ public class UserDao {
 
                 System.out.println("User id = " + userId + " : " + user.getUsername() + " " + user.getEmail() + " " + user.getPassword());
                 return user;
-            }
-            else {
+            } else {
                 return null;
             }
 
@@ -127,53 +128,32 @@ public class UserDao {
     public static void delete(int userId) throws SQLException {
         try (Connection conn = DbUtil.getConnection()) {
 
-            if (userId <= getCount(conn)) {
-
-                PreparedStatement statement = conn.prepareStatement(DELETE_USER_QUERY.replace("tableName", "users"));
-                statement.setInt(1, userId);
-                statement.executeUpdate();
-            } else {
-                System.out.println("No indeks in tale users");
-            }
+            PreparedStatement statement = conn.prepareStatement(DELETE_USER_QUERY.replace("tableName", "users"));
+            statement.setInt(1, userId);
+            statement.executeUpdate();
         }
     }
 
 
     // 5) FIND ALL USERS -----------------------------------------------------------------------------------------------
-    public Object findAll() throws SQLException {
-
-        User[] users = {};
+    public List<User> findAll() throws SQLException {
         try (Connection conn = DbUtil.getConnection()) {
 
-            int count = getCount(conn);
+            List<User> users = new ArrayList<>();
+            PreparedStatement statement = conn.prepareStatement(SELECT_ALL_USER_QUERY);
+            ResultSet resultSet = statement.executeQuery();
 
-            for (int id = 1; id <= 20; id++) {
-
+            while (resultSet.next()) {
                 User user = new User();
-                PreparedStatement statement = conn.prepareStatement(SELECT_USER_QUERY2);
-                statement.setInt(1, id);
-                ResultSet resultSet = statement.executeQuery();
+                user.setId(resultSet.getInt("id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
 
-
-
-                if (resultSet.next()) {
-                    user.setId(resultSet.getInt("id"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setUsername(resultSet.getString("username"));
-                    user.setPassword(resultSet.getString("password"));
-
-                    users = addToArray(user, users);
-                    id++;
-
-                }
+                users.add(user);
             }
-
-            for (int i = 0; i < users.length; i++) {
-
-                System.out.println(users[i].getUsername());                                                              //Print all users from table --> checking if table is set and filled
-            }
+            return users;
         }
-        return users;
     }
 
     // 6) UPDATE USER WITH GIVEN CHANGES -------------------------------------------------------------------------------
