@@ -82,56 +82,42 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">UserCRUD</h1>
-                    <a href="/user/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Add user</a>
                 </div>
-
-
-
-
-
 
                 <div class="row">
 
                     <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-20">
-                        <div class="card shadow mb-9">
+                    <div class="col-xl-12 col-lg-9">
+                        <div class="card shadow mb-5">
                             <!-- Card Header - Dropdown -->
                             <div
                                     class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Users List</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Dodaj użytkownika</h6>
 
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="chart-area">
 
-                                    <table class = "table table-striped">
-                                        <thead class="table-light">
-                                        <tr>
-                                            <th scope="col">Nazwa użytkownika</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">id</th>
-                                            <th scope="col">Akcja</th>
-                                        </tr>
-                                        </thead>
+                                    <form method="post">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nazwa użytkownika</label>
+                                            <input type="text" name="username" class="form-control" id="inputname" aria-describedby="emailHelp">
 
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Adres e-mail</label>
+                                            <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Hasło</label>
+                                            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                                    </form>
 
-
-                                        <c:forEach items="${users}" var="u">
-
-                                            <tr>
-
-                                                <td>${u.username}</td>
-                                                <td>${u.email}</td>
-                                                <td>${u.id}</td>
-                                                <td><a href="<c:url value="/user/show?id=${u.id}"/>">Pokaż </a>/ Edit / Usuń</td>
-                                            </tr>
-
-                                        </c:forEach>
-
-
-                                    </table>
                                 </div>
                             </div>
                         </div>
